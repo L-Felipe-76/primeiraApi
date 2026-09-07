@@ -1,7 +1,6 @@
 package com.example.accounts.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
 import java.util.UUID;
 
 @Entity
@@ -14,7 +13,6 @@ public class Account {
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Size(min = 8, message = "A senha deve ter no mínimo 8 caracteres")
     private String password;
 
     public Account() {

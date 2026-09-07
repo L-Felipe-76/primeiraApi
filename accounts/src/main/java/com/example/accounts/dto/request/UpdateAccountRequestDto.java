@@ -1,4 +1,12 @@
 package com.example.accounts.dto.request;
 
-public record UpdateAccountRequestDto() {
+import jakarta.validation.constraints.*;
+
+public record UpdateAccountRequestDto(
+        @NotBlank
+        String email,
+
+        @NotBlank
+        String password) {
+
 }

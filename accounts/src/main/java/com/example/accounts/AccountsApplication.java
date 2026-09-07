@@ -14,6 +14,6 @@ public class AccountsApplication {
 
 /*
 -Lembrar de falar com o Wagner sobre a parte de service e como ele vai querer ela.
--Perguntar sobre o Update de ServiceImpl
+-Perguntar sobre a redundância de criar restrições no model e na validação do Dto
 */
 

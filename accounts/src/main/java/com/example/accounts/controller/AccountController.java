@@ -1,10 +1,14 @@
 package com.example.accounts.controller;
 
+import com.example.accounts.dto.request.CreateAccountRequestDto;
+import com.example.accounts.dto.request.UpdateAccountRequestDto;
+import com.example.accounts.dto.response.AccountResponseDto;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import jakarta.validation.Valid;
 import com.example.accounts.model.Account;
 import com.example.accounts.service.AccountService;
+import com.example.accounts.mapper.AccountMapper;
 
 import java.net.URI;
 import java.util.List;
@@ -15,21 +19,45 @@ import java.util.UUID;
 public class AccountController {
 
     private final AccountService accountService;
+    private final AccountMapper accountMapper;
 
-    public AccountController(AccountService accountService) {
+
+    public AccountController(AccountService accountService, AccountMapper accountMapper) {
         this.accountService = accountService;
+        this.accountMapper = accountMapper;
     }
 
-    @PostMapping("create")
-    public ResponseEntity<Void> create(@RequestBody @Valid Account account) {
+    @PostMapping
+    public ResponseEntity<Void> create(@RequestBody @Valid CreateAccountRequestDto accountDto) {
+        Account account = accountMapper.fromCreateAccountRequestDtoToEntity(accountDto);
         UUID uuid =accountService.create(account);
-        URI location = URI.create("Account" + uuid);
+        URI location = URI.create("/accounts/" + uuid);
         return ResponseEntity.created(location).build();
     }
 
-    @GetMapping("list")
-    public ResponseEntity<List<Account>> list() {
+    @GetMapping
+    public ResponseEntity<List<AccountResponseDto>> list() {
         List<Account> accounts = accountService.findAll();
-        return ResponseEntity.ok().body(accounts);
+        List<AccountResponseDto> accountResponseDtos = accountMapper.fromAccountToDto(accounts);
+        return ResponseEntity.ok().body(accountResponseDtos);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AccountResponseDto> findById(@PathVariable UUID id) {
+        Account account = accountService.findById(id);
+        return ResponseEntity.ok().body(accountMapper.fromAccountToDto(account));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<AccountResponseDto> update(@PathVariable UUID id, @RequestBody @Valid UpdateAccountRequestDto accountDto) {
+        Account account = accountMapper.fromUpdateAccountRequestDtoToEntity(accountDto);
+        Account updated = accountService.update(account, id);
+        return ResponseEntity.ok().body(accountMapper.fromAccountToDto(updated));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable UUID id) {
+        accountService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
