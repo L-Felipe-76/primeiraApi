@@ -1,12 +1,30 @@
 package com.example.AccountsBS.model;
-import jakarta.persistence.*;
 
+//Spring Framework
+import org.jspecify.annotations.Nullable;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+//Dependencies
+import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
-
+import java.util.Collection;
+import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-public class AccountBS {
+@Table(name = "accounts_bs")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class AccountBS implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -52,151 +70,34 @@ public class AccountBS {
     @Column(length = 2000)
     private String referenciasRua;
 
-    public AccountBS() {
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of();
     }
 
-    public AccountBS(String nomeCompleto, Genero genero, LocalDate dataDeNascimento, String email, String password, String telefone, String cep, String estado, String cidade, String bairro, String rua, String numeroCasa, String referenciasRua) {
-        this.nomeCompleto = nomeCompleto;
-        this.genero = genero;
-        this.dataDeNascimento = dataDeNascimento;
-        this.email = email;
-        this.password = password;
-        this.telefone = telefone;
-        this.cep = cep;
-        this.estado = estado;
-        this.cidade = cidade;
-        this.bairro = bairro;
-        this.rua = rua;
-        this.numeroCasa = numeroCasa;
-        this.referenciasRua = referenciasRua;
-    }
-
-    public AccountBS(UUID id, String nomeCompleto, Genero genero, LocalDate dataDeNascimento, String email, String password, String telefone, String cep, String estado, String cidade, String bairro, String rua, String numeroCasa, String referenciasRua) {
-        this.id = id;
-        this.nomeCompleto = nomeCompleto;
-        this.genero = genero;
-        this.dataDeNascimento = dataDeNascimento;
-        this.email = email;
-        this.password = password;
-        this.telefone = telefone;
-        this.cep = cep;
-        this.estado = estado;
-        this.cidade = cidade;
-        this.bairro = bairro;
-        this.rua = rua;
-        this.numeroCasa = numeroCasa;
-        this.referenciasRua = referenciasRua;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getNomeCompleto() {
-        return nomeCompleto;
-    }
-
-    public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
-    }
-
-    public Genero getGenero() {
-        return genero;
-    }
-
-    public void setGenero(Genero genero) {
-        this.genero = genero;
-    }
-
-    public LocalDate getDataDeNascimento() {
-        return dataDeNascimento;
-    }
-
-    public void setDataDeNascimento(LocalDate dataDeNascimento) {
-        this.dataDeNascimento = dataDeNascimento;
-    }
-
-    public String getEmail() {
+    @Override
+    public String getUsername() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public String getPassword() {
-        return password;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public String getTelefone() {
-        return telefone;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public String getBairro() {
-        return bairro;
-    }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
-
-    public String getRua() {
-        return rua;
-    }
-
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
-
-    public String getNumeroCasa() {
-        return numeroCasa;
-    }
-
-    public void setNumeroCasa(String numeroCasa) {
-        this.numeroCasa = numeroCasa;
-    }
-
-    public String getReferenciasRua() {
-        return referenciasRua;
-    }
-
-    public void setReferenciasRua(String referenciasRua) {
-        this.referenciasRua = referenciasRua;
-    }
 }

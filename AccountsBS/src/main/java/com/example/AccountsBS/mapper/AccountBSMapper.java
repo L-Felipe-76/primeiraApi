@@ -1,50 +1,54 @@
 package com.example.AccountsBS.mapper;
 
+//Spring Framework
+import org.springframework.stereotype.Component;
+
+//AccountsBS
 import com.example.AccountsBS.dto.request.CreateAccountBSRequestDto;
 import com.example.AccountsBS.dto.request.UpdateAccountBSRequestDto;
 import com.example.AccountsBS.dto.response.AccountBSResponseDto;
-import org.springframework.stereotype.Component;
 import com.example.AccountsBS.model.AccountBS;
 
+//Dependencies
 import java.util.List;
 
 @Component
 public class AccountBSMapper {
 
     public AccountBS fromCreateAccountBSRequestDtoToEntity(CreateAccountBSRequestDto accountDto) {
-        return new AccountBS(
-                accountDto.nomeCompleto(),
-                accountDto.genero(),
-                accountDto.dataDeNascimento(),
-                accountDto.email(),
-                accountDto.password(),
-                accountDto.telefone(),
-                accountDto.cep(),
-                accountDto.estado(),
-                accountDto.cidade(),
-                accountDto.bairro(),
-                accountDto.rua(),
-                accountDto.numeroCasa(),
-                accountDto.referenciasRua()
-        );
+        return AccountBS.builder()
+                .nomeCompleto(accountDto.nomeCompleto())
+                .genero(accountDto.genero())
+                .dataDeNascimento(accountDto.dataDeNascimento())
+                .email(accountDto.email())
+                .password(accountDto.password())
+                .telefone(accountDto.telefone())
+                .cep(accountDto.cep())
+                .estado(accountDto.estado())
+                .cidade(accountDto.cidade())
+                .bairro(accountDto.bairro())
+                .rua(accountDto.rua())
+                .numeroCasa(accountDto.numeroCasa())
+                .referenciasRua(accountDto.referenciasRua())
+                .build();
     }
 
     public AccountBS fromUpdateAccountBSRequestDtoToEntity(UpdateAccountBSRequestDto accountDto) {
-        return new AccountBS(
-                accountDto.nomeCompleto(),
-                accountDto.genero(),
-                accountDto.dataDeNascimento(),
-                accountDto.email(),
-                accountDto.password(),
-                accountDto.telefone(),
-                accountDto.cep(),
-                accountDto.estado(),
-                accountDto.cidade(),
-                accountDto.bairro(),
-                accountDto.rua(),
-                accountDto.numeroCasa(),
-                accountDto.referenciasRua()
-        );
+        return AccountBS.builder()
+                .nomeCompleto(accountDto.nomeCompleto())
+                .genero(accountDto.genero())
+                .dataDeNascimento(accountDto.dataDeNascimento())
+                .email(accountDto.email())
+                .password(accountDto.password())
+                .telefone(accountDto.telefone())
+                .cep(accountDto.cep())
+                .estado(accountDto.estado())
+                .cidade(accountDto.cidade())
+                .bairro(accountDto.bairro())
+                .rua(accountDto.rua())
+                .numeroCasa(accountDto.numeroCasa())
+                .referenciasRua(accountDto.referenciasRua())
+                .build();
     }
 
     public AccountBSResponseDto fromAccountBSToDto(AccountBS account) {

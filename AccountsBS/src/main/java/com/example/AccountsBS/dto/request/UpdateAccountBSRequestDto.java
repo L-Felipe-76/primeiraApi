@@ -1,10 +1,12 @@
 package com.example.AccountsBS.dto.request;
 
+//AccountsBS
 import com.example.AccountsBS.model.Genero;
+
+//Dependencies
 import jakarta.validation.constraints.*;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
-
 import java.time.LocalDate;
 
 public record UpdateAccountBSRequestDto(

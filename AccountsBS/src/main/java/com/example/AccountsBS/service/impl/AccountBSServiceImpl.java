@@ -1,12 +1,16 @@
 package com.example.AccountsBS.service.impl;
 
+//Spring Framework
+import org.springframework.stereotype.Service;
+
+//AccountsBS
 import com.example.AccountsBS.model.AccountBS;
 import com.example.AccountsBS.repository.AccountBSRepository;
 import com.example.AccountsBS.service.AccountBSService;
 import com.example.AccountsBS.exception.AccountNotFoundException;
 import com.example.AccountsBS.exception.EmailAlreadyExistsException;
-import org.springframework.stereotype.Service;
 
+//Dependencies
 import java.util.List;
 import java.util.UUID;
 

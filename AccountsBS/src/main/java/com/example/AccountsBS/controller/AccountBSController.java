@@ -1,16 +1,18 @@
 package com.example.AccountsBS.controller;
 
-import com.example.AccountsBS.dto.request.CreateAccountBSRequestDto;
-import com.example.AccountsBS.dto.request.UpdateAccountBSRequestDto;
-import com.example.AccountsBS.dto.response.AccountBSResponseDto;
+//Spring Framework
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
-import jakarta.validation.Valid;
+
+//AccountsBS
+import com.example.AccountsBS.dto.request.UpdateAccountBSRequestDto;
+import com.example.AccountsBS.dto.response.AccountBSResponseDto;
 import com.example.AccountsBS.model.AccountBS;
 import com.example.AccountsBS.service.AccountBSService;
 import com.example.AccountsBS.mapper.AccountBSMapper;
 
-import java.net.URI;
+//Dependencies
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,14 +26,6 @@ public class AccountBSController {
     public AccountBSController(AccountBSService accountBSService, AccountBSMapper accountBSMapper) {
         this.accountBSService = accountBSService;
         this.accountBSMapper = accountBSMapper;
-    }
-
-    @PostMapping
-    public ResponseEntity<Void> create(@RequestBody @Valid CreateAccountBSRequestDto accountDto) {
-        AccountBS account = accountBSMapper.fromCreateAccountBSRequestDtoToEntity(accountDto);
-        UUID uuid =accountBSService.create(account);
-        URI location = URI.create("/accounts/" + uuid);
-        return ResponseEntity.created(location).build();
     }
 
     @GetMapping
