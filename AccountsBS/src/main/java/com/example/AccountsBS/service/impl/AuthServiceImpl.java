@@ -45,10 +45,19 @@ public class AuthServiceImpl implements AuthService{
 
         AccountBS account = new AccountBS();
 
+        account.setNomeCompleto(request.nomeCompleto());
+        account.setGenero(request.genero());
+        account.setDataDeNascimento(request.dataDeNascimento());
         account.setEmail(request.email());
-        account.setPassword(
-                passwordEncoder.encode(request.password())
-        );
+        account.setPassword(passwordEncoder.encode(request.password()));
+        account.setTelefone(request.telefone());
+        account.setCep(request.cep());
+        account.setEstado(request.estado());
+        account.setCidade(request.cidade());
+        account.setBairro(request.bairro());
+        account.setRua(request.rua());
+        account.setNumeroCasa(request.numeroCasa());
+        account.setReferenciasRua(request.referenciasRua());
 
         accountRepository.save(account);
 
