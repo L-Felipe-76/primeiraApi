@@ -1,14 +1,14 @@
 package com.example.AccountsBS.dto.request;
 
 //AccountsBS
-
 import com.example.AccountsBS.model.Genero;
+
+//Dependencies
+import java.time.LocalDate;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
-
-import java.time.LocalDate;
 
 public record CreateAccountBSRequestDto(
 

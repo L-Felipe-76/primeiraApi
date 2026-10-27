@@ -20,6 +20,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @Tag(name = "AccountBS", description = "Endpoints e operações relacionados ao gerenciamento de contas no sistema BS")
 @RestController
@@ -35,16 +37,18 @@ public class AccountBSController {
     }
 
     @Operation(summary = "Lista as contas existentes")
+    @SecurityRequirement(name = "bearerAuth")
     @ApiResponses({
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Conta encontrada"
-            ),
-            @ApiResponse(
-                    responseCode = "403",
-                    description = "Acesso bloqueado por falta de autenticação",
-                    content = @Content
-            )
+        @ApiResponse(
+            responseCode = "200",
+            description = "Conta encontrada",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = AccountBSResponseDto.class))
+        ),
+        @ApiResponse(
+            responseCode = "403",
+            description = "Acesso bloqueado por falta de autenticação",
+            content = @Content
+        )
     })
     @GetMapping
     public ResponseEntity<List<AccountBSResponseDto>> list() {
@@ -54,21 +58,23 @@ public class AccountBSController {
     }
 
     @Operation(summary = "Busca uma conta pelo id informado")
+    @SecurityRequirement(name = "bearerAuth")
     @ApiResponses({
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Conta encontrada"
-            ),
-            @ApiResponse(
-                    responseCode = "403",
-                    description = "Acesso bloqueado por falta de autenticação",
-                    content = @Content
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Conta não encontrada",
-                    content = @Content
-            )
+        @ApiResponse(
+            responseCode = "200",
+            description = "Conta encontrada",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = AccountBSResponseDto.class))
+        ),
+        @ApiResponse(
+            responseCode = "403",
+            description = "Acesso bloqueado por falta de autenticação",
+            content = @Content
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Conta não encontrada",
+            content = @Content
+        )
     })
     @GetMapping("/{id}")
     public ResponseEntity<AccountBSResponseDto> findById(@PathVariable UUID id) {
@@ -77,21 +83,23 @@ public class AccountBSController {
     }
 
     @Operation(summary = "Atualiza uma conta pelo id informado")
+    @SecurityRequirement(name = "bearerAuth")
     @ApiResponses({
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Conta atualizada"
-            ),
-            @ApiResponse(
-                    responseCode = "403",
-                    description = "Acesso bloqueado por falta de autenticação",
-                    content = @Content
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Conta não encontrada",
-                    content = @Content
-            )
+        @ApiResponse(
+            responseCode = "200",
+            description = "Conta atualizada",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = AccountBSResponseDto.class))
+        ),
+        @ApiResponse(
+            responseCode = "403",
+            description = "Acesso bloqueado por falta de autenticação",
+            content = @Content
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Conta não encontrada",
+            content = @Content
+        )
     })
     @PutMapping("/{id}")
     public ResponseEntity<AccountBSResponseDto> update(@PathVariable UUID id, @RequestBody @Valid UpdateAccountBSRequestDto accountDto) {
@@ -101,21 +109,23 @@ public class AccountBSController {
     }
 
     @Operation(summary = "Apaga uma conta pelo id informado")
+    @SecurityRequirement(name = "bearerAuth")
     @ApiResponses({
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Conta apagada"
-            ),
-            @ApiResponse(
-                    responseCode = "403",
-                    description = "Acesso bloqueado por falta de autenticação",
-                    content = @Content
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Conta não encontrada",
-                    content = @Content
-            )
+        @ApiResponse(
+            responseCode = "200",
+            description = "Conta apagada",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = AccountBSResponseDto.class))
+        ),
+        @ApiResponse(
+            responseCode = "403",
+            description = "Acesso bloqueado por falta de autenticação",
+            content = @Content
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Conta não encontrada",
+            content = @Content
+        )
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {

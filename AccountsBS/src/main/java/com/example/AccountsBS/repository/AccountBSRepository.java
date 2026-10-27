@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @Repository
 public interface AccountBSRepository extends JpaRepository<AccountBS, UUID> {
+
     boolean existsByEmail(String email);
     Optional<AccountBS> findByEmail(String email);
 }

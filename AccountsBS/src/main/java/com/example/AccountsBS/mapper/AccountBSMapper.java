@@ -15,7 +15,8 @@ import java.util.List;
 @Component
 public class AccountBSMapper {
 
-    public AccountBS fromCreateAccountBSRequestDtoToEntity(CreateAccountBSRequestDto accountDto) {
+    //------Codigo Morto
+    /*public AccountBS fromCreateAccountBSRequestDtoToEntity(CreateAccountBSRequestDto accountDto) {
         return AccountBS.builder()
                 .nomeCompleto(accountDto.nomeCompleto())
                 .genero(accountDto.genero())
@@ -31,7 +32,7 @@ public class AccountBSMapper {
                 .numeroCasa(accountDto.numeroCasa())
                 .referenciasRua(accountDto.referenciasRua())
                 .build();
-    }
+    }*/
 
     public AccountBS fromUpdateAccountBSRequestDtoToEntity(UpdateAccountBSRequestDto accountDto) {
         return AccountBS.builder()

@@ -35,12 +35,20 @@ public class SecurityConfiguration {
 
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/bairroSeguro/accounts/**").authenticated()
                         .requestMatchers(
-                                "/swagger-ui/**",
-                                "/swagger-ui.html",
-                                "/v3/api-docs/**"
+                            "/v3/api-docs/**",
+                            "/swagger-ui/**",
+                            "/swagger-ui/index.html",
+                            "/swagger-resources/**",
+                            "/webjars/**"
                         ).permitAll()
+                        .requestMatchers(
+                            "/api/bairroSeguro/accounts/**",
+                            "/api/bairroSeguro/moradores/**",
+                            "/api/bairroSeguro/ocorrencias/**",
+                            "/api/bairroSeguro/redesDeApoio/**",
+                            "/api/bairroSeguro/contatosDeEmergencia/**"
+                        ).authenticated()
                         .anyRequest().authenticated()
                 )
 

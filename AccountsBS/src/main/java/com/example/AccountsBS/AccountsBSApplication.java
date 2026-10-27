@@ -9,6 +9,4 @@ public class AccountsBSApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AccountsBSApplication.class, args);
 	}
-
-    //Perguntar sobre a função do Create no mapper sendo que ele não é usado em nenhum controller e agora estamos a criar as contas pelo register
 }
