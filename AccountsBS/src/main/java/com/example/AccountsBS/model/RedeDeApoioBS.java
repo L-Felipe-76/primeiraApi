@@ -4,6 +4,7 @@ package com.example.AccountsBS.model;
 import jakarta.persistence.*;
 import java.util.UUID;
 
+@Table(name = "redes_de_apoio_bs")
 @Entity
 public class RedeDeApoioBS {
 

@@ -3,6 +3,7 @@ package com.example.AccountsBS.dto.request;
 //Dependencies
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Schema(description = "Dados necessários para atualizar uma rede de apoio")
@@ -25,6 +26,6 @@ public record UpdateRedeDeApoioBSRequestDto(
     String bairro,
 
     @Schema(description = "Quantidade de integrantes da rede de apoio", example = "50")
-    @NotBlank(message = "A quantidade de integrantes é obrigatória")
+    @NotNull(message = "A quantidade de integrantes é obrigatória")
     int integrantes ) {
 }

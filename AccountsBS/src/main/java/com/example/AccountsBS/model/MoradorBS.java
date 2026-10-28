@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
 
+@Table(name = "moradores_bs")
 @Entity
 public class MoradorBS {
 

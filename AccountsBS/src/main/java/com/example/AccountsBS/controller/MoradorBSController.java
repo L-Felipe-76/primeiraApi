@@ -42,7 +42,7 @@ public class MoradorBSController {
     @SecurityRequirement(name = "bearerAuth")
     @ApiResponses({
         @ApiResponse(
-            responseCode = "200",
+            responseCode = "201",
             description = "Morador criado com sucesso",
             content = @Content(
                 mediaType = "application/json",

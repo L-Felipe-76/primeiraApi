@@ -42,7 +42,7 @@ public class RedeDeApoioBSController {
     @SecurityRequirement(name = "bearerAuth")
     @ApiResponses({
         @ApiResponse(
-            responseCode = "200",
+            responseCode = "201",
             description = "Rede de apoio criada com sucesso",
             content = @Content(
                 mediaType = "application/json",

@@ -1,0 +1,3 @@
+ALTER TABLE accounts_bs ALTER COLUMN genero TYPE CHAR;
+
+ALTER TABLE ocorrencias_bs ALTER COLUMN tag TYPE VARCHAR(100);

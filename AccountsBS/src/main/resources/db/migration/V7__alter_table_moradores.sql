@@ -1,0 +1,1 @@
+ALTER TABLE moradores_bs ALTER COLUMN genero TYPE CHAR;

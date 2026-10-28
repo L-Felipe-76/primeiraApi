@@ -25,7 +25,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
-@Tag(name = "MoradoresBS", description = "Endpoints e operações relacionados ao gerenciamento de contatos de emergência no sistema BS")
+@Tag(name = "ContatosDeEmergenciaBS", description = "Endpoints e operações relacionados ao gerenciamento de contatos de emergência no sistema BS")
 @RestController
 @RequestMapping("bairroSeguro/contatosDeEmergencia")
 public class ContatoDeEmergenciaBSController {
@@ -42,7 +42,7 @@ public class ContatoDeEmergenciaBSController {
     @SecurityRequirement(name = "bearerAuth")
     @ApiResponses({
         @ApiResponse(
-            responseCode = "200",
+            responseCode = "201",
             description = "Contato de emergência criado com sucesso",
             content = @Content(
                 mediaType = "application/json",

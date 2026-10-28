@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Table(name = "ocorrencias_bs")
 @Entity
 public class OcorrenciaBS {
 

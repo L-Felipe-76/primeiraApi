@@ -43,7 +43,7 @@ public class OcorrenciaBSController {
     @SecurityRequirement(name = "bearerAuth")
     @ApiResponses({
         @ApiResponse(
-            responseCode = "200",
+            responseCode = "201",
             description = "Ocorrência criada com sucesso",
             content = @Content(
                 mediaType = "application/json",
