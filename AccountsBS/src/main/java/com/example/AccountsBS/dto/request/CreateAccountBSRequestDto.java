@@ -33,7 +33,7 @@ public record CreateAccountBSRequestDto(
     @NotBlank(message = "O cep é obrigatório") @Size(min = 9, max = 9, message = "O cep deve seguir o padrão XXXXX-XXX (Obs:Incluir hífen)")
     String cep,
 
-    @NotBlank(message = "O estado é obrigatório") @Size(max = 20)
+    @NotBlank(message = "O estado é obrigatório") @Size(min = 3, max = 20, message = "O estado deve ser escito por completo")
     String estado,
 
     @NotBlank(message = "A cidade é obrigatória") @Size(max = 250)

@@ -14,6 +14,7 @@ import com.example.AccountsBS.dto.request.RegisterAccountBSRequestDto;
 import com.example.AccountsBS.service.impl.AuthServiceImpl;
 
 //Dependencies
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
@@ -50,7 +51,7 @@ public class AuthController {
     })
     @PostMapping("/login")
     public ResponseEntity<AuthResponseDto> login(
-        @RequestBody LogInAccountsBSRequestDto request
+        @RequestBody @Valid LogInAccountsBSRequestDto request
     ) {
         String token = authService.login(request);
 
@@ -85,7 +86,7 @@ public class AuthController {
     })
     @PostMapping("/register")
     public ResponseEntity<AuthResponseDto> register(
-        @RequestBody RegisterAccountBSRequestDto request
+        @RequestBody @Valid RegisterAccountBSRequestDto request
     ) {
         String token = authService.register(request);
 

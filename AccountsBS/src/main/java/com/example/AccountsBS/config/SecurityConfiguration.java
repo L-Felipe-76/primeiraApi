@@ -9,12 +9,17 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.config.Customizer;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 //AccountsBS
 import com.example.AccountsBS.security.JWTAuthenticationFilter;
 
 //Dependencies
 import lombok.RequiredArgsConstructor;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -27,6 +32,8 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors(Customizer.withDefaults())
+
                 .csrf(csrf -> csrf.disable())
 
                 .sessionManagement(session ->
@@ -34,7 +41,14 @@ public class SecurityConfiguration {
                 )
 
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers(
+                            "/api/auth/**",
+                            "/bairroSeguro/accounts/**",
+                            "/bairroSeguro/moradores/**",
+                            "/bairroSeguro/ocorrencias/**",
+                            "/bairroSeguro/redesDeApoio/**",
+                            "/bairroSeguro/contatosDeEmergencia/**"
+                        ).permitAll()
                         .requestMatchers(
                             "/v3/api-docs/**",
                             "/swagger-ui/**",
@@ -42,13 +56,13 @@ public class SecurityConfiguration {
                             "/swagger-resources/**",
                             "/webjars/**"
                         ).permitAll()
-                        .requestMatchers(
-                            "/api/bairroSeguro/accounts/**",
-                            "/api/bairroSeguro/moradores/**",
-                            "/api/bairroSeguro/ocorrencias/**",
-                            "/api/bairroSeguro/redesDeApoio/**",
-                            "/api/bairroSeguro/contatosDeEmergencia/**"
-                        ).authenticated()
+//                        .requestMatchers(
+//                            "/bairroSeguro/accounts/**",
+//                            "/bairroSeguro/moradores/**",
+//                            "/bairroSeguro/ocorrencias/**",
+//                            "/bairroSeguro/redesDeApoio/**",
+//                            "/bairroSeguro/contatosDeEmergencia/**"
+//                        ).authenticated()
                         .anyRequest().authenticated()
                 )
 
@@ -60,5 +74,18 @@ public class SecurityConfiguration {
                 );
 
         return http.build();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedOrigins(List.of("http://localhost:5173"));
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        config.setAllowedHeaders(List.of("*"));
+        config.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
     }
 }

@@ -41,7 +41,7 @@ public record UpdateAccountBSRequestDto(
     String cep,
 
     @Schema(description = "Estado do usuário", example = "Alagoas")
-    @NotBlank(message = "O estado é obrigatório") @Size(max = 20)
+    @NotBlank(message = "O estado é obrigatório") @Size(min = 3, max = 20, message = "O estado deve ser escito por completo")
     String estado,
 
     @Schema(description = "Cidade do usuário", example = "Maceió")

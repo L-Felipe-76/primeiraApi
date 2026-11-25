@@ -14,7 +14,7 @@ public record UpdateRedeDeApoioBSRequestDto(
     String cep,
 
     @Schema(description = "Estado da rede de apoio", example = "Alagoas")
-    @NotBlank(message = "O estado é obrigatório") @Size(max = 20)
+    @NotBlank(message = "O estado é obrigatório") @Size(min = 3, max = 20, message = "O estado deve ser escito por completo")
     String estado,
 
     @Schema(description = "Cidade da rede de apoio", example = "Maceió")
